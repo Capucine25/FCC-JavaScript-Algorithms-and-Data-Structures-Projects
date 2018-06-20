@@ -1,0 +1,19 @@
+function rot13(str) {
+  
+  var startDict=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+  var endDict= ['N','O','P','Q','R','S','T','U','V','W','X','Y','Z','A','B','C','D','E','F','G','H','I','J','K','L','M'];
+  
+  for (i=0;i<str.length;i++){
+    
+    if ((/\w/).test(str[i]))
+      { console.log(str[i], endDict[startDict.indexOf(str[i])])
+        str=str.replace(str[i], endDict[startDict.indexOf(str[i])])}
+  }
+    
+    
+  
+  return str;
+}
+
+// Change the inputs below to test
+console.log(rot13("SERR PBQR PNZC"));

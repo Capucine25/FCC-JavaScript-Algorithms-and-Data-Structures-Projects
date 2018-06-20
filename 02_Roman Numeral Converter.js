@@ -5,7 +5,8 @@ function roman(num,romanNum){
   if (num==0)
     {return romanNum;}
   
-  //Looks if M is neccessary
+  //Every if looks if a letter, or a combination of 2 letters
+  //is necessary
   if (num-1000 >= 0){
     romanNum.push("M");
     num=num-1000;
@@ -17,7 +18,24 @@ function roman(num,romanNum){
     num=num-900;
     return roman(num,romanNum);
   }
+  
+  if (num-500>=0){
+    romanNum.push("D");
+    num=num-500;
+    return roman(num,romanNum);
+  }
+  
+  if (num-400>=0){
+    romanNum.push("CD");
+    num=num-400;
+    return roman(num,romanNum);
+  }
  
+  if (num-100>=0){
+    romanNum.push("C")
+    num=num-100
+    return roman(num,romanNum)
+  }
 }
 
 
@@ -30,4 +48,4 @@ function convertToRoman(num) {
   return romanArray;
 }
 
-console.log(convertToRoman(1900));
+console.log(convertToRoman(1100));

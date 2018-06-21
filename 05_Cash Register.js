@@ -12,7 +12,7 @@ function checkCashRegister(price, cash, cid) {
 
 
   //Adds money type to cid array
-  for (i=0;i<(cid.length);i++){
+  for (var i=0;i<(cid.length);i++){
     cid[i].push(typeOfMoney[i])
     
   //And multiplies the money in cdi by 100 to have only integers
@@ -34,13 +34,18 @@ function checkCashRegister(price, cash, cid) {
       }
     }
   
+//Returns money in changeToGive to cents instead of dollars
+  for (var i=0;i<changeToGive.length;i++){
+    changeToGive[i][1]=changeToGive[i][1]/100
+  }
+    
   
 //Case if there is not money left in the register after giving change
   var sumRegister=0
-  for (i=0;i<cid.length;i++)
+  for (var i=0;i<cid.length;i++)
     {sumRegister+=cid[i][1]}
     
-  if (sumRegister==0)
+  if (sumRegister==0 && change==0)
     return {status: "CLOSED", change: changeToGive}
     
     
@@ -54,16 +59,16 @@ function checkCashRegister(price, cash, cid) {
   else {
     
     //Removes the type of money that doesn't need to be given
-  changeToGive=changeToGive.filter(type=> type[1])
+    changeToGive=changeToGive.filter(type=> type[1])
+    //Switches around the money type so the biggest type of money
+    //appears first
+    var finalChange=[]
+    for (var i=0;i<changeToGive.length;i++){
+      finalChange.push(changeToGive[changeToGive.length-i-1])
+    }
   
-    return {status: "OPEN", change: changeToGive}
+    return {status: "OPEN", change: finalChange}
   }
 
   
-  return (changeToGive)
-}
-
-
-  
-  return (changeToGive)
 }

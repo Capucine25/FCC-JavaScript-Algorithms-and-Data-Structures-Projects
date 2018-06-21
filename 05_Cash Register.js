@@ -20,9 +20,8 @@ function checkCashRegister(price, cash, cid) {
     
   //And creates an array in which to add to change to give
   changeToGive.push([cid[i][0],0])
-  
-  
   }
+  
   
   //Calculate the change to give 
   for (var i=(cid.length-1);i>=0;i--){
@@ -35,16 +34,35 @@ function checkCashRegister(price, cash, cid) {
       }
     }
   
-  //Removes the type of money that doesn't need to be given
-    changeToGive=changeToGive.filter(type=> type[1])
+  
+//Case if there is not money left in the register after giving change
+  var sumRegister=0
+  for (i=0;i<cid.length;i++)
+    {sumRegister+=cid[i][1]}
+    
+  if (sumRegister==0)
+    return {status: "CLOSED", change: changeToGive}
+    
     
 //Case if there is not enough money in the register
   if (change>0){
     return {status: "INSUFFICIENT_FUNDS", change: []}
   }
-
-//Case if there is not money left in the register after giving change
   
+  
+//Case if there is money left in the register
+  else {
+    
+    //Removes the type of money that doesn't need to be given
+  changeToGive=changeToGive.filter(type=> type[1])
+  
+    return {status: "OPEN", change: changeToGive}
+  }
+
+  
+  return (changeToGive)
+}
+
 
   
   return (changeToGive)

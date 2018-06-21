@@ -18,7 +18,7 @@ function checkCashRegister(price, cash, cid) {
   //And multiplies the money in cdi by 100 to have only integers
    cid[i][1]=cid[i][1]*100
     
-  //And creates an array in which to add to change to give
+  //And creates an array in which to add the change to give
   changeToGive.push([cid[i][0],0])
   }
   

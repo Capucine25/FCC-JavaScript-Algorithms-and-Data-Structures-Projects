@@ -1,7 +1,7 @@
 function telephoneCheck(str) {
   
  //Determines if there is a country code.
-  if (/[\d].*[\d]{3,}.*[\d]{3,}.*[\d]{4,}/.test(str)){
+  if (/^[\d][\s]*[(]*[\d]{3,}.*[\d]{3,}.*[\d]{4,}/.test(str)){
     if (str[0]==1){
       str=str.replace(str[0],"");
         str=str.trim()
@@ -11,9 +11,13 @@ function telephoneCheck(str) {
       {return false}
   }
   
+//Permet de s'assurer que le numero n'est pas trop long  
+str=str+"-" 
 console.log(str)
-return (/[\d]{3,}[\d]{3,}[-]*[\d]{4,}/.test(str))
+
+
+return (/^[(]*[\d]{3,3}[)]*[\s|-]*[\d]{3,3}[-|\s]*[\d]{4,4}[-]$/.test(str))
   
 }
 
-console.log(telephoneCheck("1 5555555-555"));
+console.log(telephoneCheck("(275)76227382"));
